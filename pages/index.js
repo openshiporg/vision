@@ -11,11 +11,10 @@ import {
   Plane,
   MapControls,
   Tube,
+  Text3D,
 } from "@react-three/drei";
 import { inSphere } from "maath/random";
 import { Curve, LineCurve3, Vector3 } from "three";
-import { PlatformButton } from "../components/PlatformButton";
-
 function Dodecahedron({ time, ...props }) {
   return (
     <mesh {...props}>
@@ -242,6 +241,30 @@ function Alternative({ title, cap, raised, vPosition = 0, anchorX = "right" }) {
   );
 }
 
+function Marker({ children, ...props }) {
+  // This holds the local occluded state
+  const [occluded, occlude] = useState();
+  return (
+    <Html
+      // 3D-transform contents
+      transform
+      // Hide contents "behind" other meshes
+      occlude
+      // Tells us when contents are occluded (or not)
+      onOcclude={occlude}
+      // We just interpolate the visible state into css opacity and transforms
+      style={{
+        transition: "all 0.2s",
+        opacity: occluded ? 0 : 1,
+        transform: `scale(${occluded ? 0.5 : 1})`,
+      }}
+      {...props}
+    >
+      {children}
+    </Html>
+  );
+}
+
 export default function IndexPage() {
   const line = useMemo(() => {
     const v1 = new Vector3(0, 0, -0.35);
@@ -278,7 +301,6 @@ export default function IndexPage() {
             The path to an open-source marketplace...
           </Caption>
         </mesh>
-
         <mesh position={[0, 0.2, 0]} scale=".1">
           <torusKnotGeometry args={[0.9, 0.25, 256, 2, 6]} />
           <meshNormalMaterial />
@@ -313,13 +335,13 @@ export default function IndexPage() {
             V 2.0
           </Text>
         </Billboard>
-        <mesh position={[-0.4, -0.4, 0]} scale=".1">
+        <mesh position={[-0.6, -0.6, 0]} scale=".1">
           <torusGeometry args={[1, 0.25, 2, 100]} />
           <meshNormalMaterial />
           <SubCaption>{`sales`}</SubCaption>
           <Caption>{`openfront`}</Caption>
         </mesh>
-        <mesh position={[-0.9, -0.4, 0]} scale=".1">
+        <mesh position={[-1.1, -0.6, 0]} scale=".1">
           <Caption
             position={[0.3, 1, 0]}
             widthDivider={8}
@@ -332,7 +354,7 @@ export default function IndexPage() {
             vPosition={-1.8}
           />
         </mesh>
-        <Billboard follow={false} position={[-0.4, -0.75, 0]}>
+        <Billboard follow={false} position={[-0.6, -0.95, 0]}>
           <Plane args={[0.1, 0.0375]} material-color="#047857" />
           <Text
             position={[0, 0, 0.001]}
@@ -347,14 +369,14 @@ export default function IndexPage() {
             ALPHA
           </Text>
         </Billboard>
-        <mesh position={[0.4, -0.4, 0]} scale=".1">
+        <mesh position={[0.6, -0.6, 0]} scale=".1">
           <torusKnotGeometry args={[0.9, 0.25, 256, 2, 3, 1]} />
           {/* <sphereGeometry args={[1, 64, 64]} /> */}
           <meshNormalMaterial />
           <SubCaption>{`support`}</SubCaption>
           <Caption>{`opensupport`}</Caption>
         </mesh>
-        <mesh position={[0.9, -0.4, 0]} scale=".1">
+        <mesh position={[1.1, -0.6, 0]} scale=".1">
           <Caption
             position={[0.3, 1, 0]}
             widthDivider={8}
@@ -373,7 +395,7 @@ export default function IndexPage() {
             vPosition={-1.8}
           />
         </mesh>
-        <Billboard follow={false} position={[0.4, -0.75, 0]}>
+        <Billboard follow={false} position={[0.6, -0.95, 0]}>
           <Plane args={[0.1, 0.0375]} material-color="#047857" />
           <Text
             position={[0, 0, 0.001]}
@@ -388,48 +410,108 @@ export default function IndexPage() {
             ALPHA
           </Text>
         </Billboard>
-        {/* <Billboard follow={false} position={[-0.2, -0.75, 0]}>
-          <Plane args={[0.1, 0.0375]} material-color="#047857" rotation-x={15}/>
+        <mesh position={[0, -0.375, 0]}>
           <Text
-            position={[0, 0, 0.001]}
-            rotation-y={Math.PI * 0.25}
-            lineHeight={0.8}
+            position={[0, 0.25, 0]}
+            rotation={[0, 0, -Math.PI / 2]}
+            fontSize={0.035}
+            color="#ffffff"
             font="/Ki-Medium.ttf"
-            fontSize={width / 150}
-            material-toneMapped={false}
-            anchorX="center"
-            anchorY="middle"
-            // color="#4c6ef5"
           >
-            ALPHA
+            Orders API
           </Text>
-          <Plane
-            position={[0.1, 0.1, 0]}
-            args={[0.1, 0.0375]}
-            material-color="#047857"
-          />
           <Text
-            position={[0.1, 0.1, 0]}
-            lineHeight={0.8}
+            position={[0.25, -0.12, 0]}
+            rotation={[0, 0, -Math.PI / 7]}
+            fontSize={0.035}
+            color="#ffffff"
             font="/Ki-Medium.ttf"
-            fontSize={width / 150}
-            material-toneMapped={false}
-            anchorX="center"
-            anchorY="middle"
-            // color="#4c6ef5"
           >
-            ALPHA
+            Messages API
           </Text>
-        </Billboard> */}
-        {/* <mesh position={[0, -0.3, 0]} scale=".1">
-          <Tube position={[0, 0, 0]} args={[path, 1, 0.5, 3, false]}>
+          <Text
+            position={[-0.25, -0.12, 0]}
+            rotation={[0, 0, Math.PI / 7]}
+            fontSize={0.035}
+            color="#ffffff"
+            font="/Ki-Medium.ttf"
+          >
+            Products API
+          </Text>
+          {/* <sphereGeometry args={[0.075, 64, 64]} /> */}
+          <mesh scale="1" rotation={[0.5, 0.8, Math.PI / 2]}>
+            <tetrahedronGeometry args={[0.1, 0]} />
             <meshNormalMaterial />
-          </Tube>
-        </mesh> */}
-        {/* <mesh position={[0, -0.3, 0]} scale=".0001">
-        <PlatformButton />
-        </mesh> */}
-        {/* <OrbitControls /> */}
+          </mesh>
+          <Text
+            position={[0, -0.1, 0]}
+            fontSize={0.03}
+            color="#94a3b8"
+            font="/Ki-Medium.ttf"
+            // font="https://fonts.gstatic.com/s/raleway/v14/1Ptrg8zYS_SKggPNwK4vaqI.woff"
+          >
+            MARKETPLACE
+            {/* <meshNormalMaterial /> */}
+            {/* <meshNormalMaterial /> */}
+          </Text>
+
+          <mesh
+            scale="1"
+            rotation={[0.5, 0.8, Math.PI / 2]}
+            position={[0, -0.35, 0]}
+          >
+            <sphereGeometry args={[0.075, 64, 64]} /> <meshNormalMaterial />
+          </mesh>
+          <Text
+            position={[0, -0.48, 0]}
+            fontSize={0.03}
+            color="#94a3b8"
+            font="/Ki-Medium.ttf"
+            // font="https://fonts.gstatic.com/s/raleway/v14/1Ptrg8zYS_SKggPNwK4vaqI.woff"
+          >
+            AMAZON
+            {/* <meshNormalMaterial /> */}
+            {/* <meshNormalMaterial /> */}
+          </Text>
+          <Text
+            position={[0, -0.53, 0]}
+            lineHeight={0.8}
+            font="/Ki-Medium.ttf"
+            fontSize={0.03}
+            anchorY="middle"
+            color="#4ade80"
+          >
+            $1.2T
+          </Text>
+          <mesh
+            scale="1"
+            rotation={[-.2, 0.8, Math.PI]}
+            position={[0, -0.7, 0]}
+          >
+            <boxGeometry args={[0.1, 0.1, 0.1]} /> <meshNormalMaterial />
+          </mesh>
+          <Text
+            position={[0, -0.83, 0]}
+            fontSize={0.03}
+            color="#94a3b8"
+            font="/Ki-Medium.ttf"
+            // font="https://fonts.gstatic.com/s/raleway/v14/1Ptrg8zYS_SKggPNwK4vaqI.woff"
+          >
+            AIRBNB
+            {/* <meshNormalMaterial /> */}
+            {/* <meshNormalMaterial /> */}
+          </Text>
+          <Text
+            position={[0, -.88, 0]}
+            lineHeight={0.8}
+            font="/Ki-Medium.ttf"
+            fontSize={0.03}
+            anchorY="middle"
+            color="#4ade80"
+          >
+            $67.2B
+          </Text>
+        </mesh>
         <MapControls />
         <Stars />
       </Canvas>

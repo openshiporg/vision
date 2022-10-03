@@ -6,7 +6,7 @@
     "start": "next start"
   },
   "dependencies": {
-    "@react-three/drei": "9.3.4",
+    "@react-three/drei": "^9.32.5",
     "@react-three/fiber": "8.0.10",
     "framer-motion": "5.4.4",
     "maath": "0.0.2",
