@@ -457,7 +457,7 @@ export default function IndexPage() {
 
           <mesh
             scale="1"
-            rotation={[0.5, 0.8, Math.PI / 2]}
+            rotation={[0, 0.8, Math.PI / 2]}
             position={[0, -0.35, 0]}
           >
             <sphereGeometry args={[0.075, 64, 64]} /> <meshNormalMaterial />
@@ -488,7 +488,7 @@ export default function IndexPage() {
             rotation={[-.2, 0.8, Math.PI]}
             position={[0, -0.7, 0]}
           >
-            <boxGeometry args={[0.1, 0.1, 0.1]} /> <meshNormalMaterial />
+            <boxGeometry args={[0.1, 0.09, 0.1]} /> <meshNormalMaterial />
           </mesh>
           <Text
             position={[0, -0.83, 0]}
