@@ -15,6 +15,8 @@ import {
 } from "@react-three/drei";
 import { inSphere } from "maath/random";
 import { Curve, LineCurve3, Vector3 } from "three";
+import { motion, Variants, Transition } from "framer-motion";
+
 function Dodecahedron({ time, ...props }) {
   return (
     <mesh {...props}>
@@ -272,34 +274,41 @@ export default function IndexPage() {
     return new LineCurve3(v1, v2);
   }, []);
 
-  const path = useMemo(() => {
-    class CustomSinCurve extends Curve {
-      constructor(scale = 1) {
-        super();
-
-        this.scale = scale;
-      }
-
-      getPoint(t) {
-        const tx = t * 3 - 1.5;
-        const ty = Math.sin(2 * Math.PI * t);
-        const tz = 0;
-
-        return new Vector3(tx, ty, tz).multiplyScalar(this.scale);
-      }
-    }
-
-    return new CustomSinCurve(10);
-  }, []);
+  // const MPs = {
+  //   marketplace: {
+  //     value:
+  //   }
+  // }
 
   return (
     <>
       {/* <Overlay /> */}
-      <Canvas camera={{ position: [0, 0, 1.5] }}>
-        <mesh position={[0, 1, 0]} scale=".1">
+      <Canvas camera={{ position: [0, 0, 2] }}>
+        <mesh position={[0, 1.2, 0]} scale=".1">
           <Caption widthDivider={4}>
             The path to an open-source marketplace...
           </Caption>
+          <Text font="/Ki-Medium.ttf" fontSize={0.5} position={[0, -3.4, 0]}>
+            We're standardizing the marketplace and then building{" "}
+            <Text position={[8.75, 0, 0]} fontSize={0.5}>
+              ONE
+            </Text>
+            <Billboard follow={false} position={[10, 0, 0]}>
+              <Plane args={[1, 0.35]} material-color="#047857" />
+              <Text
+                position={[0, 0, 0.001]}
+                lineHeight={0.8}
+                font="/Ki-Medium.ttf"
+                fontSize={.22}
+                material-toneMapped={false}
+                anchorX="center"
+                anchorY="middle"
+                // color="#4c6ef5"
+              >
+                ALPHA
+              </Text>
+            </Billboard>
+          </Text>
         </mesh>
         <mesh position={[0, 0.2, 0]} scale=".1">
           <torusKnotGeometry args={[0.9, 0.25, 256, 2, 6]} />
@@ -438,6 +447,10 @@ export default function IndexPage() {
           >
             Products API
           </Text>
+          {/* <mesh scale="1" rotation={[0, 0, 2]} position={[-0.23, -0.11, 0]}>
+            <cylinderGeometry args={[0.02, 0.02, 0.55, 3]} />
+            <meshNormalMaterial />
+          </mesh> */}
           {/* <sphereGeometry args={[0.075, 64, 64]} /> */}
           <mesh scale="1" rotation={[0.5, 0.8, Math.PI / 2]}>
             <tetrahedronGeometry args={[0.1, 0]} />
@@ -454,13 +467,29 @@ export default function IndexPage() {
             {/* <meshNormalMaterial /> */}
             {/* <meshNormalMaterial /> */}
           </Text>
-
-          <mesh
-            scale="1"
-            rotation={[0, 0.8, Math.PI / 2]}
-            position={[0, -0.35, 0]}
-          >
-            <sphereGeometry args={[0.075, 64, 64]} /> <meshNormalMaterial />
+          {/* <Billboard follow={false} position={[0, -0.18, 0]}>
+            <Plane args={[0.15, 0.0575]} material-color="#075985" />
+            <Text
+              position={[0, 0, 0.001]}
+              lineHeight={0.8}
+              font="/Ki-Medium.ttf"
+              fontSize={width / 100}
+              material-toneMapped={false}
+              anchorX="center"
+              anchorY="middle"
+              // color="#4c6ef5"
+            >
+              SWAP
+            </Text>
+          </Billboard> */}
+          {/* <mesh scale="0" rotation={[0, 0, 0]} position={[0, -0.1, 0]}>
+            <motion.button style={{ fontSize: "1px" }}>SWAP</motion.button>
+          </mesh> */}
+          <mesh scale="1" rotation={[0, 0, 0]} position={[0, -0.35, 0]}>
+            {/* <ringGeometry args={[ 1, 1, 2 ]} /> */}
+            <coneGeometry args={[0.07, 0.12, 32]} />
+            <meshNormalMaterial />
+            {/* <sphereGeometry args={[0.075, 64, 64]} /> <meshNormalMaterial /> */}
           </mesh>
           <Text
             position={[0, -0.48, 0]}
@@ -483,12 +512,10 @@ export default function IndexPage() {
           >
             $1.2T
           </Text>
-          <mesh
-            scale="1"
-            rotation={[-.2, 0.8, Math.PI]}
-            position={[0, -0.7, 0]}
-          >
-            <boxGeometry args={[0.1, 0.09, 0.1]} /> <meshNormalMaterial />
+          <mesh scale="1" rotation={[-2, 0, 0]} position={[0, -0.7, 0]}>
+            {/* <boxGeometry args={[0.1, 0.09, 0.1]} /> */}
+            <octahedronGeometry args={[0.07, 0]} />
+            <meshNormalMaterial />
           </mesh>
           <Text
             position={[0, -0.83, 0]}
@@ -502,7 +529,7 @@ export default function IndexPage() {
             {/* <meshNormalMaterial /> */}
           </Text>
           <Text
-            position={[0, -.88, 0]}
+            position={[0, -0.88, 0]}
             lineHeight={0.8}
             font="/Ki-Medium.ttf"
             fontSize={0.03}
