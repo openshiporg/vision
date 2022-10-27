@@ -290,25 +290,50 @@ export default function IndexPage() {
           </Caption>
           <Text font="/Ki-Medium.ttf" fontSize={0.5} position={[0, -3.4, 0]}>
             We're standardizing the marketplace and then building{" "}
-            <Text position={[8.75, 0, 0]} fontSize={0.5}>
-              ONE
-            </Text>
-            <Billboard follow={false} position={[10, 0, 0]}>
-              <Plane args={[1, 0.35]} material-color="#047857" />
+          </Text>
+          <mesh position={[.2, -3.3, -3]}>
+            <mesh
+              position={[-1.1, -0.08, 0]}
+              scale="3.2"
+              rotation={[1, 0.8, Math.PI / 2]}
+            >
+              <tetrahedronGeometry args={[0.1, 0]} />
+              <meshNormalMaterial />
+            </mesh>
+            <Text fontSize={0.65}>ONE</Text>
+            <Plane args={[0.1, 0.0375]} material-color="#047857" />
+
+            {/* <Text
+              position={[1.4, 0, 0.001]}
+              lineHeight={0.8}
+              font="/Ki-Medium.ttf"
+              fontSize={0.3}
+              material-toneMapped={false}
+              anchorX="center"
+              anchorY="middle"
+              color="#10b981"
+            >
+              ALPHA
+            </Text> */}
+
+            {/* <Billboard position={[0, 0, 0]}>
+              <Plane args={[1.8, 0.9]} material-color="#e2e8f0" />
+            </Billboard> */}
+            {/* <Billboard position={[0, -0.75, 0]}>
               <Text
                 position={[0, 0, 0.001]}
                 lineHeight={0.8}
                 font="/Ki-Medium.ttf"
-                fontSize={.22}
+                fontSize={0.3}
                 material-toneMapped={false}
                 anchorX="center"
                 anchorY="middle"
-                // color="#4c6ef5"
+                color="#10b981"
               >
                 ALPHA
               </Text>
-            </Billboard>
-          </Text>
+            </Billboard> */}
+          </mesh>
         </mesh>
         <mesh position={[0, 0.2, 0]} scale=".1">
           <torusKnotGeometry args={[0.9, 0.25, 256, 2, 6]} />
@@ -463,7 +488,7 @@ export default function IndexPage() {
             font="/Ki-Medium.ttf"
             // font="https://fonts.gstatic.com/s/raleway/v14/1Ptrg8zYS_SKggPNwK4vaqI.woff"
           >
-            MARKETPLACE
+            ONE
             {/* <meshNormalMaterial /> */}
             {/* <meshNormalMaterial /> */}
           </Text>
