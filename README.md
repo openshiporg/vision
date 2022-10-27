@@ -9,3 +9,8 @@ To achieve this, we will need 3 parts:
 3. Opensupport - support platform that lets customers open tickets anywhere you're selling
 
 These three platforms will standarize the marketplace allowing anyone to launch one. Furthermore, it'll bring power back to the sellers. Future marketplaces will integrate with you, not the other way around.
+
+### Further reading
+
+- [Show HN: I'm building an open-source Amazon](https://news.ycombinator.com/item?id=32690410)
+- [Using Open-source to Disrupt Marketplaces](https://openship.org/blog/using-open-source-to-disrupt-marketplaces)
