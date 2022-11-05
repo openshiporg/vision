@@ -1,31 +1,16 @@
-# With Three js
+## Vision
 
-This example uses:
+A visual representation of Openship's long term vision, an open-source marketplace.
 
-[`threejs`](https://threejs.org/): A lightweight, 3D library with a default WebGL renderer. The library also provides Canvas 2D, SVG and CSS3D renderers in the examples.
-[`react-three-fiber`](https://github.com/pmndrs/react-three-fiber): A React renderer for Threejs on the web and react-native.
-[`drei`](https://github.com/pmndrs/drei): A growing collection of useful helpers and abstractions for react-three-fiber.
+To achieve this, we will need 3 parts:
 
-## Deploy your own
+1. [Openship](https://github.com/openshiporg/openship) - order management system (OMS) that lets you fulfill from anywhere
+2. [Openfront](https://github.com/openshiporg/Openfront) - e-commerce platform that is the source of truth for your product catalog, pricing, sales channels, etc.
+3. [Opensupport](https://github.com/openshiporg/opensupport) - support platform that lets customers open tickets anywhere you're selling
 
-Deploy the example using [Vercel](https://vercel.com?utm_source=github&utm_medium=readme&utm_campaign=next-example) or preview live with [StackBlitz](https://stackblitz.com/github/vercel/next.js/tree/canary/examples/with-three-js)
+These three platforms will standarize the marketplace allowing anyone to launch one. Furthermore, it'll bring power back to the sellers. Future marketplaces will integrate with you, not the other way around.
 
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/git/external?repository-url=https://github.com/vercel/next.js/tree/canary/examples/with-three-js&project-name=with-three-js&repository-name=with-three-js)
+### Further reading
 
-## How to use
-
-Execute [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app) with [npm](https://docs.npmjs.com/cli/init), [Yarn](https://yarnpkg.com/lang/en/docs/cli/create/), or [pnpm](https://pnpm.io) to bootstrap the example:
-
-```bash
-npx create-next-app --example with-three-js with-three-js-app
-```
-
-```bash
-yarn create next-app --example with-three-js with-three-js-app
-```
-
-```bash
-pnpm create next-app --example with-three-js with-three-js-app
-```
-
-Deploy it to the cloud with [Vercel](https://vercel.com/new?utm_source=github&utm_medium=readme&utm_campaign=next-example) ([Documentation](https://nextjs.org/docs/deployment)).
+- [Show HN: I'm building an open-source Amazon](https://news.ycombinator.com/item?id=32690410)
+- [Using Open-source to Disrupt Marketplaces](https://openship.org/blog/using-open-source-to-disrupt-marketplaces)
